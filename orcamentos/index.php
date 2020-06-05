@@ -21,7 +21,7 @@
         //Mensagem pós update
         echo "<script>alert('Registro deletado com sucesso!');</script>";
         //Código para redirecionamento
-        echo "<script>window.location.href='../panel.php'</script>";
+        echo "<script>window.location.href='../orcamentos/index.php'</script>";
     }
 ?>
 <html>
