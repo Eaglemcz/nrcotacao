@@ -200,13 +200,13 @@
     //Código para deletar registro
     if(isset($_REQUEST['del'])){
         //pega o id da linha
-        $ocprid=intval($_GET['del']);
+        $codigo=intval($_GET['del']);
         //Query para deletar registro
-        $sql = "DELETE from nrc_orcamento_produto_a WHERE id=:id";
+        $sql = "DELETE from nrc_orcamento_produto_a WHERE nrc_orcamento_produto_a_codigo=:codigo";
         //Prepara query para execução
         $query = $dbh->prepare($sql);
         //Liga os parâmetros
-        $query->bindParam(':id', $ocprid, PDO::PARAM_STR);
+        $query->bindParam(':codigo', $codigo, PDO::PARAM_STR);
         //Executa a query
         $query->execute();
         //Mensagem pós update
@@ -220,8 +220,6 @@
         if(!empty($_POST['search']['keyword'])) {
             $search_keyword = $_POST['search']['keyword'];
         }
-        
-        $ocid=intval($_GET['id']);
     
         $sql="SELECT tbocpr.id as ocprid,
 		nrc_orcamento_produto_a_codigo,
@@ -236,13 +234,13 @@
         
         INNER JOIN nrc_orcamento_a tboc ON nrc_orcamento_produto_a_orcamento = tboc.id
         
-        WHERE nrc_orcamento_produto_a_orcamento = :ocid
-        OR nrc_orcamento_produto_a_codigo LIKE :keyword
+        WHERE nrc_orcamento_produto_a_orcamento = :ocid AND
+        (nrc_orcamento_produto_a_codigo LIKE :keyword
         OR nrc_orcamento_produto_a_quantidade LIKE :keyword 
         OR nrc_orcamento_produto_a_unidade LIKE :keyword 
         OR nrc_orcamento_produto_a_prazoentrega LIKE :keyword 
         OR nrc_orcamento_produto_a_observacao LIKE :keyword
-        OR nrc_orcamento_produto_a_produto LIKE :keyword
+        OR nrc_orcamento_produto_a_produto LIKE :keyword)
         
         ORDER BY nrc_orcamento_produto_a_produto";
                         
@@ -256,7 +254,7 @@
         }
 	    $limit=" limit " . $start . "," . ROW_PER_PAGE;
 	    $pagination_statement = $dbh->prepare($sql);
-        $pagination_statement->bindValue(':ocid',$ocid,PDO::PARAM_STR);
+        $pagination_statement->bindParam(':ocid',$ocid,PDO::PARAM_STR);
 	    $pagination_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
 	    $pagination_statement->execute();
         $row_count = $pagination_statement->rowCount();
@@ -330,7 +328,7 @@
                         <td><?php echo htmlentities($row->nrc_orcamento_produto_a_unidade);?></td>
                         <td><?php echo htmlentities($row->nrc_orcamento_produto_a_prazoentrega);?></td>
                         <td><button formaction="edit.php?id=<?php echo htmlentities($row->ocprid);?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
-                        <td><button formaction="index.php?del=<?php echo htmlentities($row->ocprid);?>" class="btn btn-danger btn-xs" onClick="return confirm('Realmente deseja deletar este registro?');"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td><button formaction="index.php?del=<?php echo htmlentities($row->nrc_orcamento_produto_a_codigo);?>" class="btn btn-danger btn-xs" onClick="return confirm('Realmente deseja deletar este registro?');"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                     </tr>
                     <?php
                     }
