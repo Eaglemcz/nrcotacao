@@ -188,33 +188,6 @@
         </form>
     </div>
     <br />
-
-    <!doctype HTML>
-    <?php    
-    //Linhas por página (10)
-    define("ROW_PER_PAGE",10);
-
-    //chama arquivo de conexão com o banco de dados
-    require_once '../inc/dbconfig.php';
-
-    //Código para deletar registro
-    if(isset($_REQUEST['del'])){
-        //pega o id da linha
-        $codigo=intval($_GET['del']);
-        //Query para deletar registro
-        $sql = "DELETE from nrc_orcamento_produto_a WHERE nrc_orcamento_produto_a_codigo=:codigo";
-        //Prepara query para execução
-        $query = $dbh->prepare($sql);
-        //Liga os parâmetros
-        $query->bindParam(':codigo', $codigo, PDO::PARAM_STR);
-        //Executa a query
-        $query->execute();
-        //Mensagem pós update
-        echo "<script>alert('Registro deletado com sucesso!');</script>";
-        //Código para redirecionamento
-        echo "<script>window.location.href='../orcamentos/index.php'</script>";
-    }
-?>
     <?php
         $search_keyword = '';
         if(!empty($_POST['search']['keyword'])) {
@@ -245,6 +218,9 @@
         ORDER BY nrc_orcamento_produto_a_produto";
                         
         /* Pagination Code starts */
+        //Linhas por página (10)
+        define("ROW_PER_PAGE",10);
+        
         $per_page_html = '';
 	    $page = 1;
 	    $start=0;
@@ -328,7 +304,7 @@
                         <td><?php echo htmlentities($row->nrc_orcamento_produto_a_unidade);?></td>
                         <td><?php echo htmlentities($row->nrc_orcamento_produto_a_prazoentrega);?></td>
                         <td><button formaction="edit.php?id=<?php echo htmlentities($row->ocprid);?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
-                        <td><button formaction="index.php?del=<?php echo htmlentities($row->nrc_orcamento_produto_a_codigo);?>" class="btn btn-danger btn-xs" onClick="return confirm('Realmente deseja deletar este registro?');"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td><button formaction="delete-prod.php?del=<?php echo htmlentities($row->ocprid);?>" class="btn btn-danger btn-xs" onClick="return confirm('Realmente deseja deletar este registro?');"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                     </tr>
                     <?php
                     }

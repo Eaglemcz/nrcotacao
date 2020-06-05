@@ -172,7 +172,7 @@
                         <td><?php echo htmlentities($row->nrc_orcamento_a_datainicio);?></td>
                         <td><?php echo htmlentities($row->nrc_orcamento_a_datafechamento);?></td>
                         <td><?php echo htmlentities($row->nrc_cliente_a_nomeempresa);?></td>
-                        <td><button formaction="edit.php?id=<?php echo htmlentities($row->tboid);?>&codigo=<?php echo htmlentities($row->nrc_orcamento_a_codigo)?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+                        <td><button formaction="edit.php?id=<?php echo htmlentities($row->tboid);?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
                         <td><button formaction="index.php?del=<?php echo htmlentities($row->tboid);?>" class="btn btn-danger btn-xs" onClick="return confirm('Realmente deseja deletar este registro?');"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                     </tr>
                     <?php
