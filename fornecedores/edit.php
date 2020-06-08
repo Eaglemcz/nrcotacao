@@ -57,7 +57,7 @@
     <!-- INÍCIO NAV PRINCIPAL -->
     <nav class="navbar navbar-light bg-light">
         <form class="form-inline">
-            <a href="../orcamentos/index.php" class="btn btn-outline-dark active" role="button" aria-disabled="true"><i class="fa fa-check-circle" style="font-size:24px"></i>&nbsp;ORÇAMENTOS</a> &nbsp;
+            <a href="../orcamentos/index.php" class="btn btn-outline-dark" role="button" aria-disabled="true"><i class="fa fa-check-circle" style="font-size:24px"></i>&nbsp;ORÇAMENTOS</a> &nbsp;
             <a href="#" class="btn btn-outline-dark" role="button" aria-pressed="true"><i class="fa fa-money" style="font-size:24px"></i>&nbsp;PRODUTOS</a> &nbsp;
             <div class="dropdown">
                 <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs" style="font-size:24px"></i>
@@ -65,7 +65,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Clientes</a>
-                    <a class="dropdown-item" href="../fornecedores/index.php">Fornecedores</a>
+                    <a class="dropdown-item active" href="../fornecedores/index.php">Fornecedores</a>
                     <a class="dropdown-item" href="#">Situação</a>
                 </div>
             </div>
@@ -214,7 +214,7 @@
                     // Mesagem após atualizar
                     echo "<script>alert('Registro atualizado com sucesso');</script>";
                     // Redireciona para a home de jogos
-                    echo "<script>window.location.href='../fornecedores/index.php'</script>";
+                    echo "<script>window.location.href='../fornecedores/edit.php?id=$resultado->frncid'</script>";
                 }
             ?>
         </form>
