@@ -182,7 +182,7 @@
                     // Mesagem após atualizar
                     echo "<script>alert('Registro atualizado com sucesso');</script>";
                     // Redireciona para a home de jogos
-                    echo "<script>window.location.href='../orcamentos/index.php'</script>";
+                    echo "<script>window.location.href='../orcamentos/edit.php?id=$resultado->tboid'</script>";
                 }
             ?>
         </form>
@@ -303,7 +303,7 @@
                         <td><?php echo htmlentities($row->nrc_orcamento_produto_a_quantidade);?></td>
                         <td><?php echo htmlentities($row->nrc_orcamento_produto_a_unidade);?></td>
                         <td><?php echo htmlentities($row->nrc_orcamento_produto_a_prazoentrega);?></td>
-                        <td><button formaction="edit.php?id=<?php echo htmlentities($row->ocprid);?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+                        <td><button formaction="edit-ocpr.php?id=<?php echo htmlentities($row->ocprid);?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
                         <td><button formaction="delete-prod.php?del=<?php echo htmlentities($row->ocprid);?>" class="btn btn-danger btn-xs" onClick="return confirm('Realmente deseja deletar este registro?');"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                     </tr>
                     <?php
@@ -363,11 +363,11 @@
                             {
                                 //Mensagem em caso de sucesso
                                 echo"<script>alert('Registro gravado com sucesso!');</script>";
-                                echo"<script>window.location.href='edit.php'</script>";
+                                echo"<script>window.location.href='edit.php?id=$resultado->tboid'</script>";
                             }else{
                                 //Mensagem em caso mau sucedido
                                 echo"<script>alert('Oops, algo deu errado! Por favor, tente novamente.');</script>";
-                                echo"<script>window.location.href='edit.php'</script>";
+                                echo"<script>window.location.href='edit.php?id=$resultado->tboid'</script>";
                             }
                     }
                 ?>
