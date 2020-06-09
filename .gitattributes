@@ -1,2 +1,4 @@
 *.php linguist-detectable=true
 *.js linguist-detectable=false
+POO linguist-detectable=true
+MySql linguist-detectable=true
