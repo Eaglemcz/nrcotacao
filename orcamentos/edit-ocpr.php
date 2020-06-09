@@ -135,18 +135,18 @@
             <?php
                 if (isset($_POST['update'])){
                     //Pega a ID
-                    $ocprid=intval($_GET['id']);
+                    $ocid=intval($_GET['id']);
                     
                     //Valores Post
-                    $edit_nrc_orcamento_produto_a_codigo      = $_POST['edit_nrc_orcamento_produto_a_codigo'];
-                    $edit_nrc_orcamento_produto_a_quantidade      = $_POST['edit_nrc_orcamento_produto_a_quantidade'];
-                    $edit_nrc_orcamento_produto_a_unidade      = $_POST['edit_nrc_orcamento_produto_a_unidade'];
-                    $edit_nrc_orcamento_produto_a_prazoentrega      = $_POST['edit_nrc_orcamento_produto_a_prazoentrega'];
-                    $edit_nrc_orcamento_produto_a_observacao      = $_POST['edit_nrc_orcamento_produto_a_observacao'];
-                    $edit_nrc_orcamento_produto_a_produto      = $_POST['edit_nrc_orcamento_produto_a_produto'];
+                    $edit_nrc_orcamento_produto_a_codigo        = $_POST['edit_nrc_orcamento_produto_a_codigo'];
+                    $edit_nrc_orcamento_produto_a_quantidade    = $_POST['edit_nrc_orcamento_produto_a_quantidade'];
+                    $edit_nrc_orcamento_produto_a_unidade       = $_POST['edit_nrc_orcamento_produto_a_unidade'];
+                    $edit_nrc_orcamento_produto_a_prazoentrega  = $_POST['edit_nrc_orcamento_produto_a_prazoentrega'];
+                    $edit_nrc_orcamento_produto_a_observacao    = $_POST['edit_nrc_orcamento_produto_a_observacao'];
+                    $edit_nrc_orcamento_produto_a_produto       = $_POST['edit_nrc_orcamento_produto_a_produto'];
                     
                     //Query para o update
-                    $sql = "UPDATE nrc_orcamento_produto_a SET nrc_orcamento_produto_a_codigo=:edit_nrc_orcamento_produto_a_codigo, nrc_orcamento_produto_a_quantidade=:edit_nrc_orcamento_produto_a_quantidade, nrc_orcamento_produto_a_unidade=:edit_nrc_orcamento_produto_a_unidade, nrc_orcamento_produto_a_prazoentrega=:edit_nrc_orcamento_produto_a_prazoentrega, nrc_orcamento_produto_a_observacao=:edit_nrc_orcamento_produto_a_observacao, nrc_orcamento_produto_a_produto=:edit_nrc_orcamento_produto_a_produto, where id=:ocprid";
+                    $sql = "UPDATE nrc_orcamento_produto_a SET nrc_orcamento_produto_a_codigo=:edit_nrc_orcamento_produto_a_codigo, nrc_orcamento_produto_a_quantidade=:edit_nrc_orcamento_produto_a_quantidade, nrc_orcamento_produto_a_unidade=:edit_nrc_orcamento_produto_a_unidade, nrc_orcamento_produto_a_prazoentrega=:edit_nrc_orcamento_produto_a_prazoentrega, nrc_orcamento_produto_a_observacao=:edit_nrc_orcamento_produto_a_observacao, nrc_orcamento_produto_a_produto=:edit_nrc_orcamento_produto_a_produto, where id=:ocid";
                     
                     //Prepara a query para execução
                     $query = $dbh->prepare($sql);
@@ -158,7 +158,7 @@
                     $query->bindParam(':edit_nrc_orcamento_produto_a_prazoentrega', $edit_nrc_orcamento_produto_a_prazoentrega, PDO::PARAM_STR);
                     $query->bindParam(':edit_nrc_orcamento_produto_a_observacao', $edit_nrc_orcamento_produto_a_observacao, PDO::PARAM_STR);
                     $query->bindParam(':edit_nrc_orcamento_produto_a_produto', $edit_nrc_orcamento_produto_a_produto, PDO::PARAM_STR);
-                    $query->bindParam(':ocprid', $ocprid, PDO::PARAM_STR);
+                    $query->bindParam(':ocid', $ocid, PDO::PARAM_STR);
                     
                     //Executa a query
                     $query->execute();
